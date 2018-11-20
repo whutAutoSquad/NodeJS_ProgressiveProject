@@ -1,3 +1,6 @@
+// 引入babel,使用import
 require('babel-polyfill');
 require('babel-register');
-require('./index.js'); // 这个地方引入您的项目的启动文件
+
+// 此处引入项目的启动文件
+require('./index.js');

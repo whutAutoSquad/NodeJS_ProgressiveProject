@@ -1,12 +1,19 @@
-/**
- * Main application routes
- */
-import _root from './root';
+/* Main application routes */
+const path = require('path');
+const fs = require('fs');
 
 export default function(app) {
+  fs.readdir( __dirname, function (err, files) {
+   if (err) {
+     return console.log("Cannot include router automatically.", err);
+   }
+   files.forEach(function (filename) {
+     if (!/.js$/.test(filename)){
+      let tmp = require('./' + filename);
 
-  // YEOMAN INJECT ROUTES BELOW
-  app.use(_root.routes())
-  app.use(_root.allowedMethods())
-
+      app.use(tmp.routes());
+      app.use(tmp.allowedMethods());
+     }
+   });
+  });
 };
