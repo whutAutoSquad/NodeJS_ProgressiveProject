@@ -15,15 +15,20 @@ router
     }
   })
   .get('/:id', async (ctx, next) => {
-    ctx.status = 200
 
     let res = await model.find({ code: ctx.params.id })
+    ctx.status = 200
     ctx.body = {
       db: 'infos',
       collection: 'test',
       code: ctx.params.id,
       res: res
     }
+  })
+  .delete('/', async (ctx, next) => {
+    let res = await model.remove(ctx.query)
+    ctx.status = 200;
+    ctx.body = res;
   })
 
 

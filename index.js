@@ -4,6 +4,7 @@
 
 import config from './config/environment'
 import Koa from 'koa'
+import cors from 'koa2-cors'
 import setConfig from './config/koa'
 import setRouter from './router'
 
@@ -11,6 +12,7 @@ import setRouter from './router'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const app = new Koa();
+app.use(cors());
 setConfig(app);
 setRouter(app);
 
