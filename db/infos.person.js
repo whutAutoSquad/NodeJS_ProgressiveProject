@@ -17,8 +17,10 @@ let mongoose = mongooseFunc(db_name);
 
 // 创建Schema(数据模板),在mongoose中,一切都始于Schema
 let schema = mongoose.Schema({
-  code: String,
-  race: String
+  name: String,
+  gender: String,
+  birthday: String,
+  birthplace: String,
 });
 
 // 为schema添加方法

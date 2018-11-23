@@ -8,6 +8,7 @@ let db_config = {
   collection: {
     infos: {
       test: 'test',
+      person: 'person',
       info_person_en: 'info_person_en',
     },
     static_infos: {

@@ -25,8 +25,7 @@ let schema = mongoose.Schema({
 // 译者注：注意了， method 是给 document 用的
 // NOTE: methods must be added to the schema before compiling it with mongoose.model()
 schema.methods.log = function () {
-  let str = `code:${this.code}, addr:${this.addr}`;
-  console.log(str)
+  console.log(this)
 }
 
 // 5. 创建一个 model, 参数( model名, Schema, collection )

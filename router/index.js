@@ -2,7 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 
-export default function(app) {
+let router = function(app) {
   fs.readdir( __dirname, function (err, files) {
    if (err) {
      return console.log("Cannot include router automatically.", err);
@@ -17,3 +17,6 @@ export default function(app) {
    });
   });
 };
+
+export default router;
+module.exports = router;
