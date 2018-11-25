@@ -9,6 +9,7 @@ let db_config = {
     infos: {
       test: 'test',
       person: 'person',
+      event: 'event',
       info_person_en: 'info_person_en',
     },
     static_infos: {

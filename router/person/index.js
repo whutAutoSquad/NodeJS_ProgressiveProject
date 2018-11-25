@@ -6,11 +6,14 @@ import model from '../../db/infos.person.js'
 router
   .post('/person/list', async (ctx, next) => {
     ctx.status = 200
-    let res = await model.find(ctx.query)
+    let queryBody = {
+      name: ctx.request.body.name 
+    }
+    let res = await model.find(queryBody)
     ctx.body = {
       db: 'infos',
       collection: 'person',
-      query: ctx.query,
+      query: ctx.request.body,
       res: res
     }
   })
