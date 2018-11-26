@@ -12,6 +12,15 @@ import setConfig from './config/koa'
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 setConfig(app);
 
+// 导入全局设置文件( 即 绑定在 app.context 上的函数和变量 )
+import globalConfig from './utils/global.js'
+globalConfig(app);
+
+// 导入数据库配置
+// 绑定关系: ctx.context.db[collection_name] = collection_model;
+import wrapDB from './db';
+wrapDB(app);
+
 // 导入 cors,解决跨域问题
 import cors from 'koa2-cors'
 app.use(cors());
@@ -26,10 +35,6 @@ app.use(bodyParser());
 import setRouter from './router'
 setRouter(app);
 
-// 导入全局设置文件( 即 绑定在 app.context 上的函数和变量 )
-// 其中包括 [ db(数据库, 工具函数, ... ]
-import globalConfig from './utils/global.js'
-globalConfig(app);
 
 // Start server
 app.listen(config.port, config.ip, function () {

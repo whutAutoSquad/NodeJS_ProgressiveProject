@@ -1,22 +1,12 @@
 import Router from 'koa-router'
 let router = new Router()
 
-import model from '../../db/infos.event.js'
-
 router
   .post('/event/list', async (ctx, next) => {
     ctx.status = 200
-    let {type, date, locate, detail, person} = ctx.request.body;
-    console.log(ctx.request.body);
-    let queryBody = {
-      type,
-      date,
-      locate,
-      detail,
-      person,
-    }
-    console.log(queryBody)
-    let res = await model.find(ctx.request.body)
+    let queryBody = ctx.getValidatedProps(ctx.request.body);
+    console.log('/event/list',queryBody)
+    let res = await ctx.db.event.find(queryBody)
     ctx.body = {
       db: 'infos',
       collection: 'event',

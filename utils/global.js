@@ -1,4 +1,7 @@
-import connect from '../db/connect.js';
+/*
+* 全局函数和变量
+* 即绑定在 ctx.context 上的函数和变量
+*/
 
 let getValidatedProps = ( obj = {} ) => {
 	if(typeof(obj) != "object"){
@@ -16,9 +19,4 @@ let getValidatedProps = ( obj = {} ) => {
 
 export default app => {
 	app.context.getValidatedProps = getValidatedProps;
-
-	// 数据库设置
-	app.context.db_connect = connect;
-	app.context.db_infos = connect('infos');
-	app.context.db_static_infos = connect('static_infos');
 }
