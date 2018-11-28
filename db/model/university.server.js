@@ -10,10 +10,6 @@ module.exports = function ( mongooseInstance ){
 
   // 创建Schema(数据模板),在mongoose中,一切都始于Schema
   let schema = mongooseInstance.Schema({
-    name: String,
-    gender: String,
-    birthday: String,
-    birthPlace: String,
   })
 
   // 为schema添加方法

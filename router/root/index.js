@@ -2,16 +2,32 @@ import Router from 'koa-router'
 let router = new Router()
 
 router
-  .post('/', async (ctx, next) => {
+  .post('/find', async (ctx, next) => {
+    let reqBody = ctx.getValidatedProps(ctx.request.body)
+    ctx.body = await ctx.db.test.find(reqBody)
     ctx.status = 200
-    let queryBody = ctx.getVilidateProps(ctx.request.body)
-    let res = await ctx.db.person.find(queryBody)
-    ctx.body = {
-      db: 'infos',
-      collection: 'person',
-      code: ctx.query,
-      res: res
+  })
+  .post('/create', async (ctx, next) => {
+    let reqBody = ctx.getValidatedProps(ctx.request.body)
+    console.log("reqBody: ", reqBody)
+    ctx.body = await ctx.db.test.create(reqBody)
+
+    console.log(ctx.body)
+    ctx.status = 200
+  })
+  .post('/remove', async (ctx, next) => {
+    let conditions = ctx.getValidatedProps(ctx.request.body)
+    ctx.body = await ctx.db.test.remove(conditions)
+    ctx.status = 200
+  })
+  .post('/update', async (ctx, next) => {
+    let reqBody = ctx.getValidatedProps(ctx.request.body)
+    let conditions = { index: reqBody.index }
+    let updates = {
+      $set: reqBody
     }
+    ctx.body = await ctx.db.test.update(conditions, updates)
+    ctx.status = 200
   })
 
 module.exports = router;
