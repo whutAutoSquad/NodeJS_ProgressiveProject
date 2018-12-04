@@ -35,6 +35,12 @@ app.use(bodyParser());
 import setRouter from './router'
 setRouter(app);
 
+// 官方错误处理
+// 避免了为每个请求都嵌套一层错误处理,但是这里没有将错误进行分类
+// 所以在应用规模扩大时,一定要注意补上
+app.on('error', (err, ctx) => {
+  console.error('server error', err, ctx)
+});
 
 // Start server
 app.listen(config.port, config.ip, function () {

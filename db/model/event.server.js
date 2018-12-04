@@ -9,12 +9,14 @@ let [ collection_name ] = basename.split('.');
 module.exports = function ( mongooseInstance ){
 
   // 创建Schema(数据模板),在mongoose中,一切都始于Schema
+  // 这里对查询的影响不太大
+  // 但是对插入,更新等操作提出了限制,所以最好是老老实实的规定一下
   let schema = mongooseInstance.Schema({
-    person: String,
-    date: String,
-    locate: String,
-    details: String,
-    type: String,
+    role: String,       // 角色
+    date: Date,         // 时间/日期
+    locate: String,     // 地点
+    details: String,    // 经过
+    keys: Array,        // 关键字
   })
 
   // 为schema添加方法
