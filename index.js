@@ -18,7 +18,7 @@ globalConfig(app);
 
 // 导入数据库配置
 // 绑定关系: ctx.context.db[collection_name] = collection_model;
-import wrapDB from './db';
+import wrapDB from './db_lite';
 wrapDB(app);
 
 // 导入 cors,解决跨域问题

@@ -1,6 +1,10 @@
 /*
-* 查看
+* 此文件用到的规范请查看
 * https://cn.mongoosedoc.top/docs/guide.html
+* --------------------------------------------------------------------------------
+* 注意！
+* 此版本将每个 collection 单独存放在一个文件中，为了使每个 mogoose.model 都可以进行特殊化配置
+* 如仅需将 collection 简单地绑定，建议使用 db_lite 版本
 */
 const fs = require('fs');
 const path = require('path');
