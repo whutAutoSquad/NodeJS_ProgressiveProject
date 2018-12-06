@@ -29,6 +29,15 @@ app.use(cors());
 // 在查询时,不能直接将 ctx.request.body 传入 model.func( ... ),应该类似这样使用 model.func({name: ctx.request.body.name})
 import bodyParser from 'koa-bodyparser'
 app.use(bodyParser());
+// 配置文件上传功能,使用 koa-body
+// 详见 https://blog.csdn.net/simple__dream/article/details/80890696
+// import koaBody from 'koa-body'
+// app.use(koaBody({
+//     multipart: true,
+//     formidable: {
+//         maxFileSize: 200*1024*1024    // 设置上传文件大小最大限制，默认2M
+//     }
+// }));
 
 
 // 导入路由,路由会自动将 router 下的文件都引入进来
