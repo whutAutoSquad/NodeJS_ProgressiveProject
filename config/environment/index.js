@@ -5,6 +5,7 @@ import _ from 'lodash'
 let base = {
   env: process.env.NODE_ENV,
   root: path.normalize(__dirname + '/../../..'),
+  ip: 'localhost',
   port: process.env.PORT || 9001,
   logType : 'dev'
 };

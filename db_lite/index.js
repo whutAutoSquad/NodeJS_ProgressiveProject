@@ -15,7 +15,7 @@ let models = require('./models.js')
 let wrapDB = function (app) {
 
   app.context.db = {}
-  console.log("Init app.context.db as Empty Object: app.context.db = {}")
+  console.log("[DB: Initialization]","Set app.context.db -> {}")
 
   // 1. 创建连接
   mongoose.connect(
@@ -26,18 +26,18 @@ let wrapDB = function (app) {
   // 2.确认连接状态,以进行后续处理
   // 连接出错
   mongoose.connection.on("error", function(err){
-      console.error("数据库链接失败:"+ err)
+      console.error("[DB: Connection failed]", err)
   })
 
   // 断开数据库
   mongoose.connection.on("disconnected", function(){
-      console.log("数据库断开")
+      console.log("[DB: Disconnected]")
   })
 
   // 连接成功
   mongoose.connection.once('open', function () {
     // 3. 连接成功回掉函数,此函数没有参数.
-    console.log(`${config.db_name} connected.`)
+    console.log("[DB: Connection]",`${config.db_name} connected.`)
 
   })
 
@@ -58,7 +58,7 @@ let wrapDB = function (app) {
 
     // 创建一个model,参数 ( model名, Schema, collection )
     let model = mongoose.model(collection_name, schema, collection_name);
-    console.log("Generate model: ", collection_name);
+    console.log("[DB: Generate model]", collection_name);
 
     // 将 model 绑定到 app.db 上
     app.context.db[collection_name] = model;

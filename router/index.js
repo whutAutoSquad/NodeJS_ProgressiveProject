@@ -14,6 +14,7 @@ let router = function(app) {
       if (!/.js$/.test(filename)){
         // 将所有遍历到的文件夹下的 index.js 引入进来
         let tmp = require('./' + filename);
+        console.log('[Routes: add router]', filename)
         // 执行路由绑定操作
         app.use(tmp.routes());
         app.use(tmp.allowedMethods());

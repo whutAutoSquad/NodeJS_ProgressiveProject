@@ -53,7 +53,7 @@ app.on('error', (err, ctx) => {
 
 // Start server
 app.listen(config.port, config.ip, function () {
-  console.log('Koa server listening on %d, in %s mode', config.port, config.env);
+  console.log('[Koa server: Listening on %s : %d]', config.ip, config.port);
 });
 
 // Expose app
