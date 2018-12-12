@@ -28,7 +28,6 @@ router
     ctx.body = {
       filename: ctx.req.file.filename//返回文件名
     }
-    ctx.status = 200
   })
   .post('/download', async (ctx, next) => {
     const name = 'test_download.txt';

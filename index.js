@@ -18,7 +18,8 @@ globalConfig(app);
 
 // 导入数据库配置
 // 绑定关系: ctx.context.db[collection_name] = collection_model;
-import wrapDB from './db_lite';
+// 若想使用较老版本 引'./db', 用新的 引'./db_lite'
+import wrapDB from './db';
 wrapDB(app);
 
 // 导入 cors,解决跨域问题
@@ -43,7 +44,7 @@ app.on('error', (err, ctx) => {
 
 // Start server
 app.listen(config.port, config.ip, function () {
-  console.log('[Koa server: Listening on %s : %d]', config.ip, config.port);
+  console.log('=========================== [Koa server: Listening on %s : %d] ================================', config.ip, config.port);
 });
 
 // Expose app

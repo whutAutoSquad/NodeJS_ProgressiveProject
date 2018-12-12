@@ -9,7 +9,6 @@ router
 		let queryBody = ctx.getValidatedProps(ctx.request.body)
 		console.log('/event/list.queryBody', queryBody)
 		ctx.body = await ctx.db.event.find(queryBody)
-		ctx.status = 200
 	})
 	// id/_id: [String, Number]
 	// return: Object 
@@ -17,7 +16,6 @@ router
 		let id = ctx.request.body._id || ctx.request.body.id
 		console.log('/event/get.id', id)
 		ctx.body = await ctx.db.event.findById(id)
-		ctx.status = 200
 	})
 // 新增/插入功能
 	// payload: [Array(Object),Object]
@@ -28,7 +26,6 @@ router
 		// 上传数据,统一用JSON
 		let data = JSON.parse(payload);
 		ctx.body = await ctx.db.event.create(data)
-		ctx.status = 200
 	})
 // 修改/更新 功能
 	// payload: [Array(Object),Object]
@@ -47,7 +44,6 @@ router
 			let id = payload[index]._id || payload[index].id
 			ctx.body.push( await ctx.db.event.findByIdAndUpdate(id, { $set: payload[index] }, { new: true, upsert: true }) )
 		}
-		ctx.status = 200
 	})
 // 删除 功能
 	// ids: [String, Array(String)]
@@ -56,14 +52,13 @@ router
 		console.log(ctx.request.body)
 		let { ids } = ctx.request.body
 		if(!(ids instanceof Array)){
-			ids = ids.split(',')
+			ids = ids.split(',').map(ele => ele.trim())
 		}
 		ctx.body = []
 		for (let i = 0; i < ids.length; i++) {
 			ctx.body.push( await ctx.db.event.findByIdAndRemove(ids[i]) );
 		}
 		console.log(ctx.body)
-		ctx.status = 200
 	})
 
 module.exports = router;
