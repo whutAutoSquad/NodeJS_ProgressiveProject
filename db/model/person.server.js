@@ -13,7 +13,7 @@ module.exports = function ( mongooseInstance ){
     name: String,
     gender: String,
     birthday: String,
-    birthPlace: String,
+    birthplace: String,
   })
 
   // 为schema添加方法
